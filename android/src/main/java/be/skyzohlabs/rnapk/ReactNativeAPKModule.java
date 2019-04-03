@@ -50,20 +50,26 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
 
   @ReactMethod
   public void installApp(String packagePath) {
-    File toInstall = new File(packagePath);
-    if (Build.VERSION.SDK_INT >= 24) {
-      String callingPackageName = this.reactContext.getPackageManager().getNameForUid(Binder.getCallingUid());
-      Uri apkUri = FileProvider.getUriForFile(this.reactContext, callingPackageName+".fileprovider", toInstall);
-      Intent intent = new Intent(Intent.ACTION_INSTALL_PACKAGE);
-      intent.setData(apkUri);
-      intent.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-      this.reactContext.startActivity(intent);
+    File file = new File(packagePath);
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+      Uri apkUri = FileProvider.getUriForFile(this.reactContext, "com.logisticsdriverapp.fileprovider", file);
+      Intent install = new Intent(Intent.ACTION_VIEW);
+      install.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+      install.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);//添加这一句表示对目标应用临时授权该Uri所代表的文件
+      install.setDataAndType(apkUri, "application/vnd.android.package-archive");
+      this.reactContext.startActivity(install);
+      return;
     } else {
-      Uri apkUri = Uri.fromFile(toInstall);
-      Intent intent = new Intent(Intent.ACTION_VIEW);
-      intent.setDataAndType(apkUri, "application/vnd.android.package-archive");
-      intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-      this.reactContext.startActivity(intent);
+      String cmd = "chmod 777 " +packagePath;
+      try {
+        Runtime.getRuntime().exec(cmd);
+      } catch (Exception e) {
+        e.printStackTrace();
+      }
+      Intent installIntent = new Intent(Intent.ACTION_VIEW);
+      installIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+      installIntent.setDataAndType(Uri.parse("file://" + packagePath),"application/vnd.android.package-archive");
+      this.reactContext.startActivity(installIntent);
     }
   }
 

@@ -1,22 +1,14 @@
 {
+  "name": "react-native-apk-ym",
+  "version": "0.2.7",
+  "description": "Batteries-included form for react and react native",
   "main": "index.js",
-  "license": "MIT",
-  "name": "react-native-apk",
-  "author": "SkyzohKey <skyzohkey@protonmail.com>",
-  "version": "0.2.6",
-  "description":
-    "API to install, uninstall, get version, check presence of a package, or fetch installed packages on Android.",
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Skyzohkey/react-native-apk"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "react-native",
-    "installs",
-    "uninstalls",
-    "version",
-    "apps",
-    "packages",
-    "system"
-  ]
+  "author": "shizhan",
+  "license": "ISC",
+  "publishConfig": {
+    "registry": "http://192.168.1.101:8081/repository/npm-hosted/"
+  }
 }
