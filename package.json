@@ -1,6 +1,6 @@
 {
   "name": "react-native-apk-ym",
-  "version": "0.2.7",
+  "version": "0.2.11",
   "description": "Batteries-included form for react and react native",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,5 @@
   },
   "author": "shizhan",
   "license": "ISC",
-  "publishConfig": {
-    "registry": "http://192.168.1.101:8081/repository/npm-hosted/"
-  }
+  "private":false
 }
