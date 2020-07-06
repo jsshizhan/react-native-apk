@@ -1,6 +1,6 @@
 {
   "name": "react-native-apk-ym",
-  "version": "0.2.11",
+  "version": "0.2.12",
   "description": "Batteries-included form for react and react native",
   "main": "index.js",
   "scripts": {

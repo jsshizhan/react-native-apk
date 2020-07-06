@@ -51,7 +51,7 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
   @ReactMethod
   public void installApp(String packagePath) {
     File file = new File(packagePath);
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.GINGERBREAD) {
+    if (Build.VERSION.SDK_INT >= 24) {
       Uri apkUri = FileProvider.getUriForFile(this.reactContext, "com.logisticsdriverapp.fileprovider", file);
       Intent install = new Intent(Intent.ACTION_VIEW);
       install.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
