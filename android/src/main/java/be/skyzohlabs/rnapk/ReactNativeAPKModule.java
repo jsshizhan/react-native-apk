@@ -52,7 +52,7 @@ public class ReactNativeAPKModule extends ReactContextBaseJavaModule {
   public void installApp(String packagePath) {
     File file = new File(packagePath);
     if (Build.VERSION.SDK_INT >= 24) {
-      Uri apkUri = FileProvider.getUriForFile(this.reactContext, "com.ememcustomer.fileprovider", file);
+      Uri apkUri = FileProvider.getUriForFile(this.reactContext, "com.emescustomerapp.fileprovider", file);
       Intent install = new Intent(Intent.ACTION_VIEW);
       install.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
       install.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);//添加这一句表示对目标应用临时授权该Uri所代表的文件
